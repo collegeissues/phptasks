@@ -11,6 +11,7 @@ class Task3Test extends TestCase
         $text = "Пример";
         $key = 3;
         $result = ceasarCipher($text, $key);
+        echo "Result: $result\n";
         $this->assertEquals('Тулпзх', $result);  // ожидаемое зашифрованное слово
     }
 

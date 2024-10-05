@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c030ee3-303c-496e-9111-139ceac1a730" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task3.php" beforeDir="false" afterPath="$PROJECT_DIR$/task3.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Task3Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Task3Test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/bin/.phpunit.result.cache" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bin/.phpunit.result.cache" afterDir="false" />
@@ -14,16 +16,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerConfigs">
+    <option name="notifyAboutSettingsSync" value="false" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.3.12/bin/php" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2n0OXX74mspd4nRlrz7MBlHFOhA" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -34,6 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/sterensnesterov/Documents/GitHub/phptasks/unittests",
@@ -62,6 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728106566852</updated>
       <workItem from="1728106567860" duration="1787000" />
+      <workItem from="1728111862515" duration="697000" />
     </task>
     <servers />
   </component>
