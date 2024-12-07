@@ -1,0 +1,1114 @@
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="highlight-phpstorm-light-theme.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap"
+    />
+    <style>
+      :root {
+        --r-main-font: 'Roboto', 'Noto Color Emoji', sans-serif;
+        --r-heading-font: 'Roboto', 'Noto Color Emoji', sans-serif;
+        --r-code-font: 'Roboto Mono', 'Noto Color Emoji', monospace;
+        --r-block-margin: 10px;
+      }
+      .reveal pre {
+        font-size: 0.5em;
+      }
+      .nohighlight {
+        padding: 1em !important;
+      }
+
+      td.hljs-ln-code {
+        white-space: pre;
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6,
+      .reveal pre,
+      .reveal p,
+      .reveal img {
+        margin: 0 var(--r-block-margin) calc(var(--r-block-margin) * 2);
+      }
+      .reveal pre {
+        width: auto;
+      }
+
+      .reveal .r-stack > * {
+        margin: 0;
+      }
+      .horizontal {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .horizontal > * {
+        flex-grow: 1;
+      }
+      .horizontal-half > * {
+        flex-grow: 0 !important;
+        width: calc(50% - var(--r-block-margin) * 2) !important;
+      }
+
+      p {
+        font-size: 35px;
+      }
+
+      ul li {
+        font-size: 30px;
+      }
+    </style>
+    <title>MVC</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>MVC</h2>
+        </section>
+
+        <section>
+          <p>
+            Шаблон проектирования MVC представляет собой шаблон программной
+            архитектуры «Модель-Представление-Контроллер». MVC — это один из
+            способов организации кода и набор рекомендаций, описывающих ряд
+            правил. Задача MVC заключается в том, чтобы наш код проще
+            воспринимался и читался, а также быстрее обрабатывался компьютером.
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Главная идея MVC — отделить внешний вид приложения от его логики.
+            Здесь мы говорим о веб-приложениях, поэтому внешний вид в данном
+            случае — это HTML-разметка и CSS-оформление. А вот под логикой
+            понимаются разнообразные скрипты, классы, функции и пр.
+          </p>
+        </section>
+
+        <section>
+          <img src="files/img/mvc.jpg" />
+        </section>
+
+        <section>
+          <h3>Модель</h3>
+          <p>
+            «Модель» — это постоянное хранилище данных, которое используется по
+            всей структуре. Компонент обеспечивает доступ к данным для
+            просмотра, отбора, записи. По сути это мост между другими
+            компонентами: «Контроллер» и «Представление».
+          </p>
+          <p>
+            «Модель» не «знает», что происходит с данными дальше. Её задачи —
+            поиск и подготовка данных, передаваемых прочим компонентам MVC, а
+            также обработка их в постоянном хранилище.
+          </p>
+        </section>
+
+        <section>
+          <h3>Представление</h3>
+          <p>
+            Это часть системы, в которой данным, запрашиваемым у «Модели»,
+            задаётся финишный вид их вывода. В веб-приложениях, построенных с
+            помощью MVC, «Представлением» называют компонент, где генерируется и
+            отображается код HTML. В нашем случае такой компонент является twig
+          </p>
+          <p>
+            Кроме того, «Представление» перехватывает действия пользователей,
+            которые после передаются «Контроллеру». Характерный пример — кнопка,
+            генерируемая «Представлением». Если пользователь её нажимает, в
+            «Контроллере» запускается действие.
+          </p>
+        </section>
+
+        <section>
+          <h3>Контроллер</h3>
+          <p>
+            Он занимается обработкой данных, которые вводятся пользователем, а
+            также участвует в обновлении «Модели». Этот компонент работает при
+            взаимодействии с пользователем.
+          </p>
+          <p>
+            «Контроллер» можно назвать сборщиком информации, которая передаётся
+            в «Модель» с последующей организацией хранения. Компонент не
+            содержит другой логики, кроме той, что нужна для сбора входящих
+            данных. Также он подключается лишь к одному «Представлению» и к
+            одной «Модели». Таким образом создаётся система с 1-сторонним
+            потоком данных, с одним выходом и одним входом в точках обмена.
+          </p>
+        </section>
+
+        <section>
+          <h2>Роутинг</h2>
+        </section>
+
+        <section>
+          <img src="files/img/mvc-routing.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Роутинг</h3>
+          <p>Роутинг - это сопоставление пути с контроллером/экшном</p>
+        </section>
+
+        <section>
+          <h3>Проблема №1. Данные лежат в разных массивах + !ООП</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers=""> 
+              // Для урла http://www.example.com/posts/view/3?name=test
+              echo $_SERVER['PATH_INFO']; // posts/view/3
+              echo $_GET['name']; // test
+              echo $_POST['name']; // если POST Запрос -> test
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>
+            Решением данной пробемы является использования компонента от symfony
+            - HttpFoundation Component
+          </p>
+        </section>
+
+        <section>
+          <h2>Установка HttpFoundation Component</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers=""> 
+              composer require symfony/http-foundation
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Созданеие Request</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers=""> 
+              use Symfony\Component\HttpFoundation\Request;
+
+              $request = Request::createFromGlobals();
+              // или
+              $request = new Request(
+                  $_GET,
+                  $_POST,
+                  [],
+                  $_COOKIE,
+                  $_FILES,
+                  $_SERVER
+              );
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Информация Request</h2>
+          <p>
+            Объект Request содержит информацию о клиентском запросе. Доступ к
+            этой информации можно получить через несколько публичных свойств:
+          </p>
+          <ul>
+            <li>request: эквивалент $_POST</li>
+            <li>query: эквивалент $_GET</li>
+            <li>cookies: эквивалент $_COOKIE</li>
+            <li>
+              attributes: эквивалента нет - используется вашим приложением для
+              хранения других данных (см. ниже )
+            </li>
+            <li>files: эквивалент $_FILES</li>
+            <li>server: эквивалент $_SERVER</li>
+            <li>headers: в основном эквивалентно подмножеству $_SERVER</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Пример для поля query</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              // параметры запроса '?foo=bar'
+
+              $request->query->get('foo');
+              // return 'bar'
+
+              $request->query->get('bar');
+              // return null
+
+              $request->query->get('bar', 'baz');
+              // return 'baz'
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Ещё пример поля query</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              // the query string is '?foo[bar]=baz'
+
+              // не используйте $request->query->get('foo'); вместо этого используйте следующее:
+              $request->query->all('foo');
+              // returns ['bar' => 'baz']
+
+              // если параметр отсутствует вернется пустой массив:
+              $request->query->all('qux');
+              // returns []
+
+              $request->query->get('foo[bar]');
+              // returns null
+
+              $request->query->all()['foo']['bar'];
+              // returns 'baz'
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Получение body</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $content = $request->getContent();
+              Если запрашиваемые данные могут быть $_POST данными или строкой JSON, можно использовать метод getPayload() , который возвращает экземпляр InputBag, оборачивающий эти данные:
+              $data = $request->getPayload();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Получение path</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers=""> 
+              // for a request to http://example.com/blog/index.php/post/hello-world
+              // the path info is "/post/hello-world"
+              $request->getPathInfo();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Класс Resposne</h2>
+          <p>
+            Объект Response содержит всю информацию, которую необходимо
+            отправить обратно клиенту из данного запроса. Конструктор принимает
+            до трех аргументов: содержимое ответа, код статуса и массив
+            заголовков HTTP:
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $response = new Response(
+                  'Content',
+                  Response::HTTP_OK,
+                  ['content-type' => 'text/html']
+              );
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Изменение Response</h2>
+          <p>Вы также можете менять всю информацию после создвания объекта</p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $response->setContent('Hello World');
+
+              $response->headers->set('Content-Type', 'text/plain');
+
+              $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Отправка Response</h2>
+          <p>
+            Отправка ответа клиенту осуществляется путем вызова метода send() :
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Что внутри функции send</h2>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              public function send()
+              {
+                  $this->sendHeaders();
+                  $this->sendContent();
+          
+                  if (\function_exists('fastcgi_finish_request')) {
+                      fastcgi_finish_request();
+                  } elseif (\function_exists('litespeed_finish_request')) {
+                      litespeed_finish_request();
+                  } elseif (!\in_array(\PHP_SAPI, ['cli', 'phpdbg'], true)) {
+                      static::closeOutputBuffers(0, true);
+                      flush();
+                  }
+          
+                  return $this;
+              }
+
+              public function sendContent()
+              {
+                  echo $this->content;
+
+                  return $this;
+              }
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>
+            После того как рассмотрели Request и Response. Создадим наш
+            маленький проект.
+          </p>
+        </section>
+
+        <section>
+          <h3>Создание проекта</h3>
+          <ol>
+            <li>Создать папку для проекта</li>
+            <li>Добавить файл index.php</li>
+            <li>Добавить папку templates для шаблонов</li>
+            <li>
+              Добавить наш главный шаблон index.html.twig в папку templates
+            </li>
+            <li>
+              Выполнить команду в нашей папке : composer require
+              "twig/twig:^3.0"
+            </li>
+            <li>
+              Запускаем наш сервер с помощью команды: php -S localhost:8000
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Структура проекта</h3>
+          <img src="files/img/project-structure.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Код в index.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+              $twig = new \Twig\Environment($loader);
+              
+              $request = Request::createFromGlobals();
+              
+              $response = new Response($twig->render("index.html.twig", ['name' => 'Петр']));
+              
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Шаблон в index.html.twig</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              <script type="text/template">
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Главная страница</title>
+                </head>
+                <body>
+                    <h1>Привет {{ name }}</h1>
+                </body>
+                </html>
+              </script>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>
+            Проблема #2 сейчас пользователь всегда будет попадать в наш шаблон.
+            Без разницы какой путь указал пользователь. Отсутствует структура
+            пути пользователя
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            Добавляем роутинг для структуры в виде массива(файл index.php)
+          </h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              require_once __DIR__.'/vendor/autoload.php';
+              
+              use Symfony\Component\HttpFoundation\Request;
+              use Symfony\Component\HttpFoundation\Response;
+              
+              $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+              $twig = new \Twig\Environment($loader);
+              
+              $request = Request::createFromGlobals();
+              $response = new Response();
+              
+              $map = [
+                  '/hello' => __DIR__. '/src/pages/hello.php',
+                  '/bye'   => __DIR__. '/src/pages/bye.php',
+              ];
+              
+              $path = $request->getPathInfo();
+              if (isset($map[$path])) {
+                  ob_start();
+                  include $map[$path];
+                  $response->setContent(ob_get_clean());
+              } else {
+                  $response->setStatusCode(404);
+                  $response->setContent('Not Found');
+              }
+              
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл hello.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+                /** @var \Twig\Environment $twig */
+                echo $twig->render("index.html.twig", ['name' => 'Петр']);
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл bye.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              /** @var \Twig\Environment $twig */
+              echo  $twig->render("bye.html.twig");
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл bye.html.twig</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              <script type="text/template">
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Главная страница</title>
+                </head>
+                <body>
+                    <h1>Пока!</h1>
+                </body>
+                </html>
+              </script>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Структура проекта</h3>
+          <img src="files/img/project-structure-2.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Небольшое улучшение в index.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $request = Request::createFromGlobals();
+              $response = new Response();
+
+              $map = [
+                  '/hello' => 'hello',
+                  '/bye'   => 'bye',
+              ];
+
+              $path = $request->getPathInfo();
+              if (isset($map[$path])) {
+                  ob_start();
+                  extract($request->query->all(), EXTR_SKIP);
+                  include sprintf(__DIR__ . '/src/pages/%s.php', $map[$path]);
+                  $response = new Response(ob_get_clean());
+              } else {
+                  $response = new Response('Not Found', 404);
+              }
+
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл hello.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              /** @var \Twig\Environment $twig */
+              /** @var string $name */
+              echo $twig->render("index.html.twig", ['name' => $name]);
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Страница hello</h3>
+          <p>Теперь мы можем получить имя через переменную</p>
+          <img src="files/img/page-hello.png" alt="" />
+        </section>
+
+        <section>
+          <p>Проблема #3. Роутинг в виде массива !== ООП</p>
+        </section>
+
+        <section>
+          <p>Добавляем компонент для роутинга с помощью команды:</p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              composer require symfony/routing
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Для карты путей используется класс RouteCollection</h3>
+        </section>
+
+        <section>
+          <h3>Добавление наших маршрутов</h3>
+          <p>
+            Каждая запись в коллекции определяется именем ( hello) и Route
+            экземпляром, который определяется шаблоном маршрута ( /hello/{name})
+            и массивом значений по умолчанию для атрибутов маршрута ( ['name' =>
+            'World']).
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              use Symfony\Component\Routing\RouteCollection;
+
+              $routes = new RouteCollection();
+              $routes->add('hello', new Route('/hello/{name}', ['name' => 'World']));
+              $routes->add('bye', new Route('/bye'));
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Класс Url matcher</h3>
+          <p>
+            На основе информации, хранящейся в RouteCollectionэкземпляре,
+            UrlMatcherэкземпляр может сопоставлять пути URL:
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              use Symfony\Component\Routing\Matcher\UrlMatcher;
+              use Symfony\Component\Routing\RequestContext;
+              
+              $context = new RequestContext();
+              $context->fromRequest($request);
+              $matcher = new UrlMatcher($routes, $context);
+              
+              $attributes = $matcher->match($request->getPathInfo());
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>
+            Пример сопоставления. Обратите внимание, что сопоставленный маршрут
+            автоматически сохраняется под специальным _route атрибутом
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $matcher->match('/bye');
+              /* Result:
+              [
+                  '_route' => 'bye',
+              ];
+              */
+
+              $matcher->match('/hello/Fabien');
+              /* Result:
+              [
+                  'name' => 'Fabien',
+                  '_route' => 'hello',
+              ];
+              */
+
+              $matcher->match('/hello');
+              /* Result:
+              [
+                  'name' => 'World',
+                  '_route' => 'hello',
+              ];
+              */
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>Если страница не найдена</p>
+          <pre>
+            <code>
+              $matcher->match('/not-found');
+
+              // throws a Symfony\Component\Routing\Exception\ResourceNotFoundException
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              require_once __DIR__.'/vendor/autoload.php';
+
+              use Symfony\Component\HttpFoundation\Request;
+              use Symfony\Component\HttpFoundation\Response;
+              use Symfony\Component\Routing;
+
+              $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+              $twig = new \Twig\Environment($loader);
+              $routes = include __DIR__ . '/src/routes.php';
+
+              $request = Request::createFromGlobals();
+              $response = new Response();
+
+              $context = new Routing\RequestContext();
+              $context->fromRequest($request);
+              $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
+
+              try {
+                  extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
+                  ob_start();
+                  include sprintf(__DIR__ . '/src/pages/%s.php', $_route);
+                  $response = new Response(ob_get_clean());
+              } catch (Routing\Exception\ResourceNotFoundException $exception) {
+                  $response = new Response('Not Found', 404);
+              } catch (Exception $exception) {
+                  $response = new Response('An error occurred', 500);
+              }
+
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл routes.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              use Symfony\Component\Routing;
+
+              $routes = new Routing\RouteCollection();
+              $routes->add('hello', new Routing\Route('/hello/{name}', ['name' => 'World']));
+              $routes->add('bye', new Routing\Route('/bye'));
+
+              return $routes;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Далее отделим логику шаблонизации</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              function renderTemplate(Request $request): Response
+              {
+                  $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+                  $twig = new \Twig\Environment($loader);
+              
+                  extract($request->attributes->all(), EXTR_SKIP);
+                  ob_start();
+                  include sprintf(__DIR__ . '/src/pages/%s.php', $_route);
+              
+                  return new Response(ob_get_clean());
+              }
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>
+            Благодаря этому мы можем отделить нашу логику роутинга от
+            шаблонизации
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $routes->add('hello', new Routing\Route('/hello/{name}', [
+                  'name' => 'World',
+                  '_controller' => 'renderTemplate',
+              ]));
+
+              try {
+                  $request->attributes->add($matcher->match($request->getPathInfo()));
+                  $response = call_user_func($request->attributes->get('_controller'), $request);
+              } catch (Routing\Exception\ResourceNotFoundException $exception) {
+                  $response = new Response('Not Found', 404);
+              } catch (Exception $exception) {
+                  $response = new Response('An error occurred', 500);
+              }
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Мы также можем писать свою собственную логику</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $routes->add('hello', new Routing\Route('/hello/{name}', [
+                  'name' => 'World',
+                  '_controller' => function (Request $request): string {
+                      return renderTemplate($request);
+                  }
+              ]));
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Пример что мы можем сделать</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              $routes->add('hello', new Routing\Route('/hello/{name}', [
+                  'name' => 'World',
+                  '_controller' => function (Request $request): Response {
+                      // $foo will be available in the template
+                      $request->attributes->set('foo', 'bar');
+
+                      $response = renderTemplate($request);
+
+                      // change some header
+                      $response->headers->set('Content-Type', 'text/plain');
+
+                      return $response;
+                  }
+              ]));
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Наш файл index.php</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              require_once __DIR__.'/vendor/autoload.php';
+
+              use Symfony\Component\HttpFoundation\Request;
+              use Symfony\Component\HttpFoundation\Response;
+              use Symfony\Component\Routing;
+
+              function renderTemplate(Request $request): Response
+              {
+                  $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+                  $twig = new \Twig\Environment($loader);
+
+                  extract($request->attributes->all(), EXTR_SKIP);
+                  ob_start();
+                  include sprintf(__DIR__ . '/src/pages/%s.php', $_route);
+
+                  return new Response(ob_get_clean());
+              }
+
+              $routes = include __DIR__ . '/src/routes.php';
+
+              $request = Request::createFromGlobals();
+              $response = new Response();
+
+              $context = new Routing\RequestContext();
+              $context->fromRequest($request);
+              $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
+
+              try {
+                  $request->attributes->add($matcher->match($request->getPathInfo()));
+                  $response = call_user_func($request->attributes->get('_controller'), $request);
+              } catch (Routing\Exception\ResourceNotFoundException $exception) {
+                  $response = new Response('Not Found', 404);
+              } catch (Exception $exception) {
+                  $response = new Response('An error occurred', 500);
+              }
+
+              $response->send();
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Создение нового контроллера в проекте</h3>
+          <p>Все контроллеры будем создавать в src/Controller</p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              namespace Framework\Controller;
+
+              use Symfony\Component\HttpFoundation\Response;
+
+              class LeapYearController
+              {
+                  public function isLeapYear(?int $year = null): bool
+                  {
+                      if (null === $year) {
+                          $year = (int)date('Y');
+                      }
+
+                      return 0 === $year % 400 || (0 === $year % 4 && 0 !== $year % 100);
+                  }
+
+                  public function index($request): Response
+                  {
+                      if ($this->isLeapYear($request->attributes->get('year'))) {
+                          return new Response('Yep, this is a leap year!');
+                      }
+
+                      return new Response('Nope, this is not a leap year.');
+                  }
+              }
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Добавляем в autoload</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              "autoload": {
+                "psr-4": {"Framework\\": "src/"}
+              }
+            </code>
+          </pre>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              composer dump-autoload
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Добавляем маршрут</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              use Framework\Controller\LeapYearController;
+
+              $routes->add('leap_year', new Routing\Route('/is_leap_year/{year}', [
+                  'year' => null,
+                  '_controller' => [new LeapYearController(), 'index'],
+              ]));
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Результат</h3>
+          <img src="files/img/leap-year-2023.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Результат</h3>
+          <img src="files/img/leap-year-2024.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Результат</h3>
+          <p>
+            В результате у нас получился небольшой фреймворк построенный на
+            паттерне MVC
+          </p>
+        </section>
+
+        <section>
+          <h3>Что такое фреймворк</h3>
+          <p>
+            Фреймворк - программная платформа, определяющая структуру
+            программной системы; программное обеспечение, облегчающее разработку
+            и объединение разных компонентов большого программного проекта.
+          </p>
+        </section>
+
+        <section>
+          <h3>Symfony Framework</h3>
+          <p>
+            Ведущий PHP-фреймворк для создания веб-сайтов и веб-приложений.
+            Создан на основе компонентов Symfony
+          </p>
+        </section>
+
+        <section>
+          <h3>Для работы с symfony нужно установить symfony cli</h3>
+          <a href="https://symfony.com/download">Инструкция</a>
+        </section>
+
+        <section>
+          <h3>Создание проекта</h3>
+          <p>Проект создается с помощью команды</p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              symfony new my_project_directory --version="6.4.*" --webapp
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Запуск сервера</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              symfony server:start --port=8001
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <img src="files/img/symfony-framework.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Структура папок</h3>
+          <img src="files/img/symfony-structure.png" alt="" />
+        </section>
+
+        <section>
+          <p>
+            Для того чтобы создавать контроллеры через консольную команду
+            добавим пакет:
+          </p>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              composer require symfony/maker-bundle --dev
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Создадим контроллер</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              php bin/console make:controller IndexController
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Файл IndexController</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              namespace App\Controller;
+
+              use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+              use Symfony\Component\HttpFoundation\JsonResponse;
+              use Symfony\Component\Routing\Attribute\Route;
+              
+              class IndexController extends AbstractController
+              {
+                  #[Route('/index', name: 'app_index')]
+                  public function index(): JsonResponse
+                  {
+                      return $this->json([
+                          'message' => 'Welcome to your new controller!',
+                          'path' => 'src/Controller/IndexController.php',
+                      ]);
+                  }
+              }
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Добавим twig в проект</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              composer require symfony/twig-bundle
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Добавим в папку templates index.html.twig</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+              <script type="text/template">
+                <!doctype html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport"
+                          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>Document</title>
+                </head>
+                <body>
+                    <div>
+                        Привет, {{ name }}
+                    </div>
+                </body>
+                </html>
+            </script>
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Перепишем код нашего контроллера</h3>
+          <pre>
+            <code class="language-php" data-trim data-line-numbers="">
+                namespace App\Controller;
+
+                use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+                use Symfony\Component\HttpFoundation\Request;
+                use Symfony\Component\HttpFoundation\Response;
+                use Symfony\Component\Routing\Attribute\Route;
+
+                class IndexController extends AbstractController
+                {
+                    #[Route('/', name: 'app_index')]
+                    public function index(Request $request): Response
+                    {
+                        return $this->render('index.html.twig', [
+                            'name' => $request->query->get('name', 'человек')
+                        ]);
+                    }
+                }
+
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Результат</h3>
+          <img src="files/img/symfony-result.png" alt="" />
+        </section>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.5/plugin/highlight/highlight.min.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        plugins: [RevealHighlight],
+        slideNumber: true,
+        autoAnimate: true,
+      });
+    </script>
+  </body>
+</html>
