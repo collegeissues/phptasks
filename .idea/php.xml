@@ -13,6 +13,14 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/nodatatasks" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/composer" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/hzhz/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/unitTests/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/unitTests/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/unitTests/vendor/sebastian/diff" />
@@ -40,6 +48,46 @@
       <path value="$PROJECT_DIR$/unitTests/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/unitTests/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/unitTests/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/composer" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/hzhzhz/vendor/symfony/maker-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
