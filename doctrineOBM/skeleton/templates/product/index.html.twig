@@ -1,20 +1,100 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>popajopa</title>
+    </head>
+    <style>table{border:1px solid #000;padding: 10px;width:700px;font-family: "Andale Mono";}
+           .search_form { width: 1200px;height: 50px;font-family: "Andale Mono";}
+           .search_form input:first-child {height: 27px;border: 1px solid #ccc;border-radius: 2px;}
+           .search_form #buttt {background-color: #ccc; border: none; height: 31px;
+               width: 50px;border-radius: 2px;transition: 0.1s all;}
+           .search_form #buttt:active {background-color: darkgray;animation-name: rotatingButt;
+           animation-duration: 2s;animation-iteration-count: infinite;}
 
-{% block title %}Hello ProductController!{% endblock %}
+           table {margin-top: 100px;}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+           table tbody input:active {background-color: darkgray;animation-name: rotatingButt;
+               animation-duration: 2s;animation-iteration-count: infinite;}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+           @keyframes rotatingButt {
+               0%{transform: skewX(0deg);}
+               15%{transform: skewX(30deg);rotate: 300deg;}
+               50%{transform: skewX(60deg);}
+               75%{transform: skewX(300deg);}
+               100%{transform: skewX(0deg);}
+           }
+    </style>
+    <body>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/sterensnesterov/Documents/GitHub/phptasks/doctrineOBM/skeleton/src/Controller/ProductController.php</code></li>
-        <li>Your template at <code>/Users/sterensnesterov/Documents/GitHub/phptasks/doctrineOBM/skeleton/templates/product/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+
+        <form method="GET" action="{{ path('index_product', {"products":products}) }}" class="search_form">
+            <input name="search" placeholder="search" value="{{ search }}">
+            <input type="submit" value="go" id="buttt">
+
+            <input name="searchByPrice" placeholder="search by price">
+            <input type="submit" value="go" id="buttt">
+
+{#            <input name="searchByCategory" placeholder="search by category">#}
+            <select name="searchByCategory" style="margin-top:5px;border: none;border-radius:2px;width: 150px;height: 30px;">
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="go" id="buttt">
+
+
+
+            <select style="margin:5px;border: none;border-radius:2px;
+                width: 150px;height: 30px;" name="sortDirection">
+                <option value="ASC">sort by A-Z</option>
+                <option value="DESC">sort by Z-A</option>
+            </select>
+
+            <select style="margin:5px;border: none;border-radius:2px;
+                width: 150px;height: 30px;" name="sortField">
+                <option value="name">Name</option>
+                <option value="count">Amount</option>
+                <option value="price">Price</option>
+                <option value="category">Category</option>
+            </select>
+
+            <input value="go" type="submit" style="background-color: #ccc; border: none;
+            height: 29.5px;
+               width: 50px;border-radius: 2px;">
+        </form>
+        <table>
+            <thead>
+                <tr style="text-align: left;">
+                    <th>Name</th>
+                    <th width="100px">Amount</th>
+                    <th>Coast</th>
+                    <th>Category</th>
+                    <th width="150px">Actions</th>
+                </tr>
+
+
+            </thead>
+
+            <tbody>
+
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td style="color: deepskyblue;">{{ product.count }}</td>
+                    <td style="color: indigo;">{{ product.price }}</td>
+                    {% if product.category %}
+                    <td style="color: coral;">{{ product.category.name }}</td>
+                    {% else %} <td></td>
+                    {% endif %}
+                    <td><form action="{{ path("delete_product", {"productp33":product.id}) }}" method="POST">
+                            <input name="_method" value="DELETE" type="hidden"/>
+                            <input type="submit" value="delete" style="width: 150px;height: 20px;
+                        background-color: #ccc; border: none;border-radius: 2px;margin-bottom: 5px;margin-top: 5px;"></form></td>
+                    <td><a href="{{ path("formEdit", {"productp33":product.id}) }}">edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

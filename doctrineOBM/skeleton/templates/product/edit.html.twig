@@ -56,14 +56,18 @@
 
     <div>
 
-        <form method="POST" action={{ path('create_product') }}>
-            <input name="name" placeholder="name"/>
-            <input name="count" placeholder="count"/>
-            <input name="price" placeholder="price"/>
+        <form method="POST" action={{ path('edit_product', {"productp33":productp33.id}) }}>
+            <input name="_method" value="PUT" type="hidden"/>
+            <input name="name" placeholder="name" value="{{ productp33.name }}"/>
+            <input name="count" placeholder="count" value="{{ productp33.count }}"/>
+            <input name="price" placeholder="price" value="{{ productp33.price }}"/>
+
             <select name="category">
 
+
+
                 {% for category in categories %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    <option value="{{ category.id }}" {% if category.id == productp33.category.id %}selected{% endif %}>{{ category.name }}</option>
                 {% endfor %}
             </select>
             <input name="submit" type="submit" placeholder="send"/>
