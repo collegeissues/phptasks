@@ -6,7 +6,9 @@ use App\Entity\Productp33;
 use App\Repository\CategoryRepository;
 use App\Repository\Productp33Repository;
 use Doctrine\ORM\EntityManagerInterface;
+use Faker\Core\File;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -93,5 +95,14 @@ class ProductController extends AbstractController
 
 
         return $this->render('product/index.html.twig', ["products" => $products, "categories" => $categoryRepository->findAll(), "search" => $search, "searchByPrice" => $searchByPrice]);
+    }
+
+    #[Route('/product/download')]
+    public function download(): Response
+    {
+        $filePath = $this->getParameter('kernel.project_dir') . '/public/product.xlsx';
+
+        $file = new File($filePath); 
+        return $this->file($file);
     }
 }

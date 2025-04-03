@@ -134,6 +134,11 @@
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/twig/extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/doctrine/data-fixtures" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/doctrine/doctrine-fixtures-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/zenstruck/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/skeleton/vendor/zenstruck/foundry" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\Productp33Repository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[ORM\Entity(repositoryClass: Productp33Repository::class)]
 class Productp33
@@ -12,6 +15,9 @@ class Productp33
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[Assert\NotBlank]
+    private string $title;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -24,6 +30,27 @@ class Productp33
 
     #[ORM\ManyToOne]
     private ?Category $category = null;
+
+
+
+
+    public function create(ValidatorInterface $validator): Response
+    {
+        $product = new ProductP33();
+
+        $errors = $validator->validate($product);
+
+        if (count($errors) > 0) {
+            $errorsString = (string) $errors;
+
+            return new Response($errorsString);
+        }
+
+        return new Response('Okey');
+    }
+
+
+
 
     public function getId(): ?int
     {
