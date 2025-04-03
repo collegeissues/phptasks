@@ -56,17 +56,23 @@
 
     <div>
 
-        <form method="POST" action={{ path('create_product') }}>
-            <input name="name" placeholder="name"/>
-            <input name="count" placeholder="count"/>
-            <input name="price" placeholder="price"/>
-            <select name="category">
 
+
+        <form method="POST" action="{{ path('create_product') }}" enctype="multipart/form-data">
+            <input name="name" placeholder="name">
+            <input name="count" placeholder="count">
+            <input name="price" placeholder="price">
+
+            <select name="category">
                 {% for category in categories %}
                     <option value="{{ category.id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
-            <input name="submit" type="submit" placeholder="send"/>
+            <input type="text" id="title" name="title" required>
+            <!-- Поле для выбора файла -->
+            <input type="file" name="file" placeholder="upload file">
+
+            <input name="submit" type="submit" value="Send">
         </form>
     </div>
 {% endblock %}

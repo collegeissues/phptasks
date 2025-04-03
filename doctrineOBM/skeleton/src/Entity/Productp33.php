@@ -16,8 +16,23 @@ class Productp33
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Название не должно быть пустым.")]
     private string $title;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $imagePath = null;
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): self
+    {
+        $this->imagePath = $imagePath;
+        return $this;
+    }
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -102,6 +117,17 @@ class Productp33
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self {
+        $this->title = $title ?? 'Untitled';
         return $this;
     }
 }

@@ -27,7 +27,6 @@
     </style>
     <body>
 
-
         <form method="GET" action="{{ path('index_product', {"products":products}) }}" class="search_form">
             <input name="search" placeholder="search" value="{{ search }}">
             <input type="submit" value="go" id="buttt">
@@ -67,6 +66,7 @@
             <thead>
                 <tr style="text-align: left;">
                     <th>Name</th>
+                    <th>Picture</th>
                     <th width="100px">Amount</th>
                     <th>Coast</th>
                     <th>Category</th>
@@ -81,6 +81,11 @@
                 {% for product in products %}
                 <tr>
                     <td>{{ product.name }}</td>
+                    <td>{% if product.imagePath %}
+                            <img src="{{ asset('uploads/' ~ product.imagePath) }}" alt="Изображение" />
+                        {% else %}
+                            <p>Нет изображения</p>
+                        {% endif %}</td>
                     <td style="color: deepskyblue;">{{ product.count }}</td>
                     <td style="color: indigo;">{{ product.price }}</td>
                     {% if product.category %}

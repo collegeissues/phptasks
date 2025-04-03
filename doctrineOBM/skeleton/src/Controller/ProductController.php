@@ -9,19 +9,40 @@ use Doctrine\ORM\EntityManagerInterface;
 use Faker\Core\File;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'create_product', methods: ['POST'])]
-    public function create(EntityManagerInterface $em, Request $request, CategoryRepository $categoryRepository): Response {
+    public function create(
+        EntityManagerInterface $em,
+        Request $request,
+        CategoryRepository $categoryRepository,
+        ValidatorInterface $validator
+    ): Response {
         $product = new Productp33();
+        // Устанавливаем все необходимые поля, включая title
+        $product->setTitle($request->request->get('title'));
         $product->setName($request->request->get('name'));
         $product->setCount($request->request->get('count'));
         $product->setPrice($request->request->get('price'));
         $product->setCategory($categoryRepository->find($request->request->get('category')));
+
+        // Выполняем валидацию объекта
+        $errors = $validator->validate($product);
+
+        if (count($errors) > 0) {
+            $errorMessages = [];
+            foreach ($errors as $error) {
+                $errorMessages[] = $error->getMessage();
+            }
+            // Возвращаем ошибки с кодом 400 (Bad Request)
+            return new Response(implode(', ', $errorMessages), 400);
+        }
 
         $em->persist($product);
         $em->flush();
@@ -52,6 +73,71 @@ class ProductController extends AbstractController
         return $this->redirect('/');
     }
 
+
+
+    #[Route('/product/create', name: 'product_create', methods: ['GET', 'POST'])]
+    public function formCreate(
+        Request $request,
+        CategoryRepository $categoryRepository,
+        ValidatorInterface $validator,
+        EntityManagerInterface $em
+    ): Response {
+        if ($request->isMethod('GET')) {
+            $categories = $categoryRepository->findAll();
+            return $this->render('product/create.html.twig', ['categories' => $categories]);
+        }
+
+        if ($request->isMethod('POST')) {
+
+
+            $product = new Productp33();
+
+
+            $product->setTitle($request->request->get('title'));
+            $product->setName($request->request->get('name'));
+
+            $uploadedFile = $request->files->get('file');
+
+            if ($uploadedFile) {
+                $newFilename = uniqid() . '.' . $uploadedFile->guessExtension();
+                $targetDirectory = $this->getParameter('uploads_directory');
+
+                try {
+                    $uploadedFile->move($targetDirectory, $newFilename);
+                    $product->setImagePath($newFilename);
+                } catch (FileException $e) {
+                    $errorMessages[] = 'Ошибка при загрузке файла: ' . $e->getMessage();
+                    $categories = $categoryRepository->findAll();
+                    return $this->render('product/create.html.twig', [
+                        'categories' => $categories,
+                        'errors' => $errorMessages
+                    ]);
+                }
+            }
+
+            $errors = $validator->validate($product);
+            if (count($errors) > 0) {
+                $errorMessages = [];
+                foreach ($errors as $error) {
+                    $errorMessages[] = $error->getMessage();
+                }
+                $categories = $categoryRepository->findAll();
+                return $this->render('product/create.html.twig', [
+                    'categories' => $categories,
+                    'errors' => $errorMessages
+                ]);
+            }
+
+
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirect('/product');
+        }
+
+        return new Response('Method Not Allowed', 405);
+    }
+
     #[Route('/product/{productp33}', name: "formEdit")]
     public function formEdit(CategoryRepository $categoryRepository, Productp33 $productp33): Response
     {
@@ -61,14 +147,6 @@ class ProductController extends AbstractController
 
 
         return $this->render('product/edit.html.twig', ['categories' => $categories, 'productp33' => $productp33]);
-    }
-
-    #[Route('/product/create')]
-    public function formCreate(CategoryRepository $categoryRepository): Response
-    {
-        $categories = $categoryRepository->findAll();
-
-        return $this->render('product/create.html.twig', ['categories' => $categories]);
     }
 
     #[Route('/product', name: 'index_product')]

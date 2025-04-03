@@ -2,24 +2,28 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Productp33;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Factory\ProductP33Factory;
+use App\Entity\Productp33;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        ProductP33Factory::createOne();
-        // create 20 products! Bam!
-        for ($i = 0; $i < 20; $i++) {
-            $product = new ProductP33();
-            $product->setName('product '.$i);
-            $product->setPrice(mt_rand(10, 100));
+//        for ($i = 1; $i <= 3; $i++) {
+//            $category = new Category();
+//            $category->setName('Категория '.$i);
+//            $manager->persist($category);
+//        }
+
+        for ($i = 1; $i <= 10; $i++) {
+            $product = new Productp33();
+            $product->setTitle('Продукт ' . $i);
+            $product->setName('Продукт ' . $i);
+            $product->setPrice(mt_rand(100, 1000));
             $manager->persist($product);
         }
-
         $manager->flush();
     }
 }
